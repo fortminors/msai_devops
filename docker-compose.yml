@@ -6,7 +6,6 @@ services:
         - 10000:8888
     environment:
         - JUPYTER_TOKEN=devops2023gunkings
-        - MONGO_INITDB_ROOT_PASSWORD=pass
     volumes:
         - /opt/lab1/data:/home/jovyan/work/data:rw
         - ./:/home/jovyan/work:rw
