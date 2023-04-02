@@ -1,0 +1,25 @@
+version: '3.8'
+services:
+  jupyter:
+    image: jupyter/datascience-notebook:2023-02-28
+    ports:
+        - 10000:8888
+    environment:
+        - JUPYTER_TOKEN=devops2023gunkings
+        - MONGO_INITDB_ROOT_PASSWORD=pass
+    volumes:
+        - /opt/lab1/data:/home/jovyan/work/data:rw
+        - ./:/home/jovyan/work:rw
+  db:
+    image: postgres:15.2-alpine
+    restart: on-failure
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    ports:
+      - '5432:5432'
+    volumes: 
+      - ./db:/var/lib/postgresql/data
+volumes:
+  db:
+    driver: local
